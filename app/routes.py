@@ -3,6 +3,12 @@ from .models import db, Hero, Power, HeroPower
 
 api_bp = Blueprint('api_bp', __name__)
 
+@api_bp.route('/')
+def home():
+    print("Home route is working!")
+    return "Welcome to the Superheroes API!"
+
+
 # GET /heroes - List all heroes (basic info)
 @api_bp.route('/heroes', methods=['GET'])
 def get_heroes():
