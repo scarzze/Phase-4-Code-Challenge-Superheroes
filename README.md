@@ -1,102 +1,86 @@
-# Phase-4-Code-Challenge-Superheroes
 # Superheroes API
-Welcome to the Superheroes API! This project is a simple Flask application built to track heroes and their superpowers. Whether you're a developer looking to learn about building RESTful APIs or a superhero fan who loves tech, this project has something for you.
 
-# Project Overview
-The Superheroes API allows you to:
+## Overview
+This is a Flask-based API for managing superheroes, their powers, and their abilities. The API allows users to perform CRUD operations on heroes, powers, and their relationships. 
 
-List Heroes: Get a list of heroes with their basic details.
+## Features
+- List all heroes with their names and superhero identities.
+- Retrieve detailed information about a specific hero, including their powers.
+- List all available superpowers.
+- Retrieve details of a specific power.
+- Update the description of a power.
+- Assign powers to heroes with strength levels (Strong, Weak, or Average).
 
-View Hero Details: See detailed information about a specific hero, including their superpowers.
+## Technologies Used
+- Python
+- Flask
+- Flask SQLAlchemy
+- Flask Migrate
+- SQLite (Database)
 
-List Powers: Get a list of all available superpowers.
+## Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/scarzze/phase-4-code-challenge-superheroes.git
+   cd phase-4-code-challenge-superheroes
+   ```
 
-View Power Details: See detailed information about a specific power.
+2. Create and activate a virtual environment:
+   ```sh
+   python3 -m venv .venv
+   source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+   ```
 
-Update Powers: Modify a power's description (with validation to ensure it's descriptive enough).
+3. Install dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
 
-Create Hero Powers: Link heroes with their powers by creating hero_power relationships.
+4. Set up the database:
+   ```sh
+   flask db upgrade
+   ```
 
-# How It Works
-The API is built using Flask and follows RESTful principles:
+5. Run the application:
+   ```sh
+   flask run
+   ```
 
-# Models & Relationships:
+## API Endpoints
 
-A Hero has many Powers through HeroPower.
+### Heroes
+- `GET /heroes` - Retrieve all heroes.
+- `GET /heroes/<id>` - Retrieve a specific hero by ID.
 
-A Power has many Heroes through HeroPower.
+### Powers
+- `GET /powers` - Retrieve all powers.
+- `GET /powers/<id>` - Retrieve a specific power by ID.
+- `PATCH /powers/<id>` - Update a power's description.
 
-The HeroPower model ties them together, and validations ensure data consistency.
+### Hero Powers
+- `POST /hero_powers` - Assign a power to a hero with a strength level.
 
-# Routes:
+## Project Structure
+```
+project_root/
+│── app/
+│   ├── __init__.py  # App factory & configuration
+│   ├── models.py    # Database models
+│   ├── routes.py    # API routes
+│── migrations/      # Database migrations
+│── .venv/           # Virtual environment (ignored)
+│── requirements.txt # Dependencies
+│── README.md        # Documentation
+│── config.py        # Configuration settings (if any)
+```
 
-Endpoints follow a simple, clear structure (e.g., GET /heroes, PATCH /powers/<id>, etc.).
+## Welcome Page
+The home route (`/`) will display a simple welcome message to indicate that the API is running.
 
-Responses are formatted as JSON, with nested data where needed.
+## Notes
+- Ensure that no other program is using port `5000` before running the application.
+- Use Postman or `curl` to test API endpoints.
+- The database is SQLite but can be changed to PostgreSQL or MySQL as needed.
 
-# Database:
-
-Uses SQLite by default (configured in __init__.py), with migrations managed via Flask-Migrate.
-
-Validation:
-
-Custom validations ensure that superpower descriptions are at least 20 characters long and that hero power strengths are one of: 'Strong', 'Weak', or 'Average'.
-
-# Getting Started
-Prerequisites
-Python 3.6+
-
-pip
-
-# Setup Instructions
-Clone the repository:
-
-bash
-Copy code
-git clone <https://github.com/scarzze/Phase-4-Code-Challenge-Superheroes>
-cd <Phase-4-Code-Challenge-Superheroes>
-Create a virtual environment and activate it:
-
-
-bash
-Copy code
-pip install -r requirements.txt
-(If you don't have a requirements.txt file, you'll need to install Flask, Flask-SQLAlchemy, Flask-Migrate, and Marshmallow manually.)
-
-Initialize the database:
-
-bash
-Copy code
-flask db init
-flask db migrate -m "Initial migration"
-flask db upgrade
-Seed the database run it to add some initial data for testing.
-
-# Running the Application
-To start the application, simply run:
-
-bash
-Copy code
-python run.py
-The app will start in debug mode on http://127.0.0.1:5000.
-
-Testing the API
-You can test the API endpoints using Postman or your favorite API client. A Postman collection is included in the repository (named challenge-2-superheroes.postman_collection.json). Simply import the file into Postman to get started.
-
-Project Structure
-bash
-Copy code
-/project
-   /app
-       __init__.py       # App factory and configuration
-       models.py         # SQLAlchemy models and relationships
-       routes.py         # API endpoints (routes)
-       serializers.py    # Marshmallow schemas for JSON serialization
-   run.py                # Entry point to run the Flask app
-   README.md             # This file!
-Contributing
-Since this is a private project for learning and assessment purposes, contributions aren't expected. However, feel free to experiment with the code and make improvements for your own learning!
-
-License
-This project is provided as-is for educational purposes.
-
+## Author
+Built by Scar. 
